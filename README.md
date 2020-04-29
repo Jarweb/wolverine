@@ -22,7 +22,7 @@ a lightweight react framework based on react, redux
 	- dispatch sync action
 	- store selector
 - view
-	- map controller, keep sample view
+	- mapping to controller, keep view simple
 - application
 	- router config
 	- redux config
