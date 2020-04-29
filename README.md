@@ -4,7 +4,7 @@ a lightweight react framework based on react, redux
 
 ## intro
 
-![framework]('./shortcut/framework.jpg')
+![framework]('./shotcut/framework.jpg')
 
 - model
 	- reducers
