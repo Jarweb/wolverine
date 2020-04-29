@@ -53,9 +53,9 @@ yarn add @jarzzzi/wolverine
 
 ## quick start
 
-- [demo]('./example')
+[demo]('./example')
 
-- index.tsx
+- index
 
 ```
 const app = new Wolverine({
@@ -174,6 +174,7 @@ export default function useController (props) {
     count,
     onInc,
     onDec,
+    onFetch
   }
 }
 ```
