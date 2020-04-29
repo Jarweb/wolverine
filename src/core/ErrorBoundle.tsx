@@ -1,10 +1,10 @@
-import { PureComponent} from 'react'
+import { PureComponent } from 'react'
 
 interface ErrorProps {
   onCatch: (err: any) => void
 }
 
-export default class ErrorBoundary extends PureComponent<ErrorProps> {
+export default class ErrorBoundary extends PureComponent<ErrorProps, {}> {
   public componentDidCatch(err: any) {
     this.props.onCatch(err)
   }

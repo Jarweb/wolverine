@@ -8,7 +8,11 @@
   "module": "dist/esm/index.js",
   "sideEffects": false,
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "demo": "parcel serve ./demo/index.html",
+    "build": "rollup -c rollup.config.ts",
+    "version": "npm version patch",
+    "publish": "npm publish  --access=public"
   },
   "repository": {
     "type": "git",
@@ -35,6 +39,7 @@
     "react-dom": "^16.13.1",
     "react-redux": "^7.2.0",
     "react-router-dom": "^5.1.2",
-    "redux": "^4.0.5"
+    "redux": "^4.0.5",
+    "rollup": "^2.7.3"
   }
 }

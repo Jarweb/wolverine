@@ -8,7 +8,8 @@ export default createModel({
 	reducers: {
 		say(state: any, {payload}: any){
 			return {
-				...state
+				...state,
+				msg: payload.msg
 			}
 		}
 	}
