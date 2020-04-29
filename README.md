@@ -57,7 +57,7 @@ yarn add @jarzzzi/wolverine
 
 - index
 
-```
+```javascript
 const app = new Wolverine({
   appMode: 'spa',
   routerMode: 'hashRouter'
@@ -102,7 +102,7 @@ app.render(document.getElementById('root'))
 
 - reducer
 
-```
+```javascript
 export default createModel({
   namespace: 'counter',
   state: {
@@ -133,7 +133,7 @@ export default createModel({
 
 - controller
 
-```
+```javascript
 export default function useController (props) {
   const [loading, setLoading] = useState(false)
   const dispatch = useDispatch()
@@ -181,7 +181,7 @@ export default function useController (props) {
 
 - view
 
-```
+```javascript
 export default React.memo((props) => {
   const {
     count,
