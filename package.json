@@ -1,7 +1,7 @@
 {
   "name": "@jarzzzi/wolverine",
   "version": "1.0.0",
-  "description": "",
+  "description": "a lightweght react framework",
   "entry": "src/index.ts",
   "main": "dist/index.cjs.js",
   "browser": "dist/index.umd.js",
