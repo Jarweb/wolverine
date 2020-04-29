@@ -49,105 +49,108 @@ yarn add @jarzzzi/wolverine
 - index.tsx
 ```
 const app = new Wolverine({
-	appMode: 'spa',
-	routerMode: 'hashRouter'
+  appMode: 'spa',
+  routerMode: 'hashRouter'
 })
 app.configReducers(reducers)
 app.configRoutes(routes)
 
 app.onError((error, ctx) => {
-	console.log('app error', error)
+  console.log('app error', error)
 })
 
 app.onDidmount((ctx) => {
-	console.log('app didmount', ctx)
+  console.log('app didmount', ctx)
 
-	const handle = (state: any) => {
-		console.log('route change', state)
-	}
-	const cleanup = ctx.on('routeChange', handle)
+  const handle = (state: any) => {
+    console.log('route change', state)
+  }
+  const cleanup = ctx.on('routeChange', handle)
 
-	return () => {
-		cleanup()
-	}
+  return () => {
+    cleanup()
+  }
 })
 
 app.onUnmount((ctx) => {
-	console.log('app unmount', ctx)
+  console.log('app unmount', ctx)
 })
 
 app.use((ctx) => {
-	return import(
-		'./plugins/reportsdk'
-	).then(({ default: reporter }) => {
-		ctx.reporter = reporter
-		return () => {
-			console.log('cleanup reporter')
-		}
-	})
+  return import(
+    './plugins/reportsdk'
+  ).then(({ default: reporter }) => {
+    ctx.reporter = reporter
+    return () => {
+      console.log('cleanup reporter')
+    }
+  })
 })
 
 app.render(document.getElementById('root'))
 ```
 
 - reducer
+
 ```
 export default createModel({
-	namespace: 'counter',
-	state: {
-		count: 0
-	},
-	reducers: {
-		inc(state, { payload: count }) {
-			return {
-				...state,
-				count: count
-			}
-		},
-		dec(state, {payload: count}) {
-			return {
-				...state,
-				count: count
-			}
-		}
-	},
+  namespace: 'counter',
+  state: {
+    count: 0
+  },
+  reducers: {
+    inc(state, { payload: count }) {
+      return {
+        ...state,
+        count: count
+      }
+    },
+    dec(state, {payload: count}) {
+      return {
+        ...state,
+        count: count
+      }
+    }
+  },
 })
 ```
 
 - controller
+
 ```
 export default function useController (props) {
-	const dispatch = useDispatch()
+  const dispatch = useDispatch()
 
-	const { count } = useSelector((store) => {
-		const { counter } = store
+  const { count } = useSelector((store) => {
+    const { counter } = store
 
-		return {
-			count: counter.count
-		}
-	})
+    return {
+      count: counter.count
+    }
+  })
 
-	const onInc = () => {
-		dispatch({
-			type: 'counter/inc',
-			payload: count + 1
-		})
-	}
+  const onInc = () => {
+    dispatch({
+      type: 'counter/inc',
+      payload: count + 1
+    })
+  }
 
-	const onDec = () => {
-		dispatch({
-			type: 'counter/dec',
-			payload: count - 1
-		})
-	}
+  const onDec = () => {
+    dispatch({
+      type: 'counter/dec',
+      payload: count - 1
+    })
+  }
 
-	return {
-		count,
-		onInc,
-		onDec,
-	}
+  return {
+    count,
+    onInc,
+    onDec,
+  }
 }
 ```
 
 ## next
+
 - immutable data
