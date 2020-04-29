@@ -1,6 +1,11 @@
 ## wolverine
 a lightweight react framework based on react, redux
 
+- 约束原则
+  - 不应该 dispatch 异步 action，所有 fetch effect 应该维护在对应的 controller 中
+	- controller 与 view 一一对应，处理业务逻辑
+	- redux store 中只维护业务数据实体
+	- 与视图交互相关的 state 维护在 controller
 
 ## intro
 
@@ -33,6 +38,10 @@ a lightweight react framework based on react, redux
 		- jsb sdk
 		- perf sdk
 		- ...
+- base
+	- hooks
+	- components
+	- middleware plugins
 
 
 
@@ -47,6 +56,7 @@ yarn add @jarzzzi/wolverine
 - [demo]('./example')
 
 - index.tsx
+
 ```
 const app = new Wolverine({
   appMode: 'spa',
@@ -110,6 +120,12 @@ export default createModel({
         ...state,
         count: count
       }
+    },
+    fetch(state, {payload: count}) {
+      return {
+        ...state,
+        count: count
+      }
     }
   },
 })
@@ -119,6 +135,7 @@ export default createModel({
 
 ```
 export default function useController (props) {
+  const [loading, setLoading] = useState(false)
   const dispatch = useDispatch()
 
   const { count } = useSelector((store) => {
@@ -143,12 +160,44 @@ export default function useController (props) {
     })
   }
 
+  const onFetch = () => {
+    setLoading(true)
+    const res = await fetch('xxx')
+    setLoading(false)
+    dispatch({
+      type: 'counter/fetch',
+      payload: res
+    })
+  }
+
   return {
     count,
     onInc,
     onDec,
   }
 }
+```
+
+- view
+
+```
+export default React.memo((props) => {
+  const {
+    count,
+    onDec,
+    onInc,
+    onFetch,
+  } = useController(props)
+
+  return (
+    <div>
+      <div>{count}</div>
+      <div><button onClick={onInc}>inc</button></div>
+      <div><button onClick={onDec}>dec</button></div>
+      <div><button onClick={onFetch}>fetch</button></div>
+    </div>
+  )
+})
 ```
 
 ## next
