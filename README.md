@@ -160,7 +160,7 @@ export default function useController (props) {
     })
   }
 
-  const onFetch = () => {
+  const onFetch = async () => {
     setLoading(true)
     const res = await fetch('xxx')
     setLoading(false)
@@ -170,11 +170,18 @@ export default function useController (props) {
     })
   }
 
+  const onReport = async () => {
+    appContext.ready('reporter').then((reporter) => {
+      reporter.push()
+    })
+  }
+
   return {
     count,
     onInc,
     onDec,
-    onFetch
+    onFetch,
+    onReport
   }
 }
 ```
@@ -188,6 +195,7 @@ export default React.memo((props) => {
     onDec,
     onInc,
     onFetch,
+    onReport,
   } = useController(props)
 
   return (
@@ -196,6 +204,7 @@ export default React.memo((props) => {
       <div><button onClick={onInc}>inc</button></div>
       <div><button onClick={onDec}>dec</button></div>
       <div><button onClick={onFetch}>fetch</button></div>
+      <div><button onClick={onReport}>report</button></div>
     </div>
   )
 })
