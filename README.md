@@ -9,7 +9,7 @@ a lightweight react framework based on react, redux
 
 ## intro
 
-![framework](/shotcut/framework.jpg)
+![framework](https://tva1.sinaimg.cn/large/007S8ZIlgy1gft7scoeu0j31at0u0ae4.jpg)
 
 - model
 	- reducers
