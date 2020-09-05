@@ -1,46 +1,48 @@
 ## wolverine
-a lightweight react framework based on react, redux
+a lightweight react framework based on react 、redux and middleware
 
 - 约束原则
-  - 不应该 dispatch 异步 action，所有 fetch effect 应该维护在对应的 controller 中
-  - controller 与 view 一一对应，处理业务逻辑
+  - 采用分层原则，职责分离
+  - controller 与 view 一一对应，处理相应的业务逻辑
   - redux store 中只维护业务数据实体
-  - 与视图交互相关的 state 维护在 controller
+  - 视图交互相关的 state 维护在 controller
+  - effects 应该维护在相应的 controller
+  - 不应该 dispatch 异步 action
 
 ## intro
 
 ![framework](https://tva1.sinaimg.cn/large/007S8ZIlgy1gft7scoeu0j31at0u0ae4.jpg)
 
 - model
-	- reducers
-- fetch controller
-	- middleware
-		- fetch error
-		- before fetch
-		- after fetch
-	- sw fetch cache
+	- reducers：维护与服务端一致的数据实体
 - controller
-	- controller is the custom hook
+	- controller：是一个自定义 hook，无需考虑复用，因为 controller 与 view 一一对应
 	- event binding
 	- hook
 	- effect
 	- dispatch sync action
 	- store selector
 - view
-	- mapping to controller, keep view simple
+	- 与 controller 一一对应，保持 view 的简单性
 - application
 	- router config
 	- redux config
 	- app life cycle
-	- middlewares
-		- error middleware
-		- report sdk
+	- middlewares：支持同步或异步中间件。
 		- jsb sdk
+		- report sdk
+		- error sdk
 		- perf sdk
 		- ...
+- fetch controller：缓存，http 规范，错误处理等
+	- middleware
+		- fetch error
+		- before fetch
+		- after fetch
+	- sw fetch cache
 - base
-	- hooks
-	- components
+	- hooks：通用 hook
+	- components：通用组件
 	- middleware plugins
 
 
