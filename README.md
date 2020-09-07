@@ -9,6 +9,8 @@ a lightweight react framework based on react 、redux and middleware
   - effects 应该维护在相应的 controller
   - 不应该 dispatch 异步 action
 
+- 更多请看这里[关于框架分层设计的思考](https://github.com/Jarweb/thinking-in-deep/issues/21)
+
 ## intro
 
 ![framework](https://tva1.sinaimg.cn/large/007S8ZIlgy1gft7scoeu0j31at0u0ae4.jpg)
